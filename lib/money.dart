@@ -22,6 +22,11 @@ class _MoneyAppState extends State<MoneyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidget = activeScreen ==
+            'conversion-screen' // the condition is assigned to screenWidget
+        ? ConversionScreen(switchScreen) // if condition is true, do this
+        : const TransactionsScreen(); // if condition is false, do this
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -35,9 +40,7 @@ class _MoneyAppState extends State<MoneyApp> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen == 'conversion-screen'
-              ? ConversionScreen(switchScreen)
-              : const TransactionsScreen(),
+          child: screenWidget,
         ),
       ),
     );
